@@ -1,0 +1,16 @@
+import { useEffect } from "react";
+import useAuthStore  from '@/store/authStore';
+import { supabase } from "@/lib/supabase/supabaseClient";
+
+function useAuth() {
+    const { user, setUser } = useAuthStore();
+
+    useEffect(() => {
+        if(!user) return;
+        supabase.auth.getUser().then(({ data }) => {
+            if(data?.user) setUser(data.user)
+        })
+    }, [user, setUser]);
+}
+
+export default useAuth;
