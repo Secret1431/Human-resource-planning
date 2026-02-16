@@ -4,34 +4,13 @@ function useFetch(store, fetchKey) {
 
     const state = store();
 
-    const {
-        page,
-        limit,
-        search,
-        selected,
-        totalPage,
-        setPage,
-        setLimit,
-        setSearch,
-        setSelected
-     } = state();
+    const { search, selected, setSearch, setSelected } = state();
     
     useEffect(() => {
         state[fetchKey]();
     }, [page, limit, search, fetchKey, state]);
 
-
-    return {
-        page,
-        limit,
-        search,
-        selected,
-        totalPage,
-        setPage,
-        setLimit,
-        setSearch,
-        setSelected
-    };
+    return { search, selected, setSearch, setSelected };
 }
 
 export default useFetch;

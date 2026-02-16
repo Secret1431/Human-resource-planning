@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Modal } from "bootstrap";
 import { toast } from "react-toastify";
 
 function useForm({
@@ -11,6 +10,7 @@ function useForm({
 }) {
     const [formData, setFormData] = useState(initialState);
     const [editData, setEditData] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleChange = (e) => {
         const { name, type, checked, value } = e.target;
@@ -25,14 +25,14 @@ function useForm({
 
     const handleClick = (data) => {
         setEditData(data);
-        openModal();
+        setIsOpen(true);
     };
 
-    const openModal = () => {
-        const ModalElement = document.getElementById('myModal');
-        const modal = Modal.getOrCreateInstance(ModalElement);
-        modal.show();
-    };
+    const closeModal = () => {
+        setIsOpen(false)
+        setEditData(null);
+        setFormData(initialState);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -60,12 +60,14 @@ function useForm({
     };
 
     return {
+        isOpen,
         formData,
         editData,
         handleChange,
         handleClick,
         handleSubmit,
-        handleDelete
+        handleDelete,
+        closeModal
     }
 }
 

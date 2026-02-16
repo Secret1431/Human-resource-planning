@@ -1,5 +1,5 @@
 import { supabase } from "./supabaseClient";
-import { ROLES } from "@/config/permission.config";
+import { ROLES } from "@/lib/permission.config";
 
 export async function loginUser({ email, password }) {
 
