@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import { supabase } from "../../api/supabase";
-import useGlobalStore from "../../lib/theme/index";
-import { ROLES } from '../../config/permission.config';
+import { ROLES } from '@/lib/permission.config';
 
 function Sidebar({ hasRole }) {
-    const { theme } = useGlobalStore();
     const [isOpen, setIsOpen] = useState(true);
     const navigate = useNavigate();
 
@@ -24,7 +22,7 @@ function Sidebar({ hasRole }) {
     });
 
     return (
-        <div className={`flex min-h-screen ${theme === 'dark' ? 'bg-gray-900' : 'bg-white text-gray-900'}`}>
+        <div className={`flex min-h-screen `}>
             
             <div className={`flex flex-col bg-cyan-800 text-white transition-all duration-300 ${
                 isOpen ? 'w-60' : 'w-16'

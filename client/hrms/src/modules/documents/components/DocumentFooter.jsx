@@ -3,8 +3,7 @@ import useDocument from "../hooks/useDocument";
 
 function DocumentFooter() {
 
-    const { state } = useDocument();
-    const { page, limit, totalPage, setPage, setLimit } = state();
+    const { page, limit, totalPage, setPage, setLimit } = useDocument();
 
     return (
         <Footer 

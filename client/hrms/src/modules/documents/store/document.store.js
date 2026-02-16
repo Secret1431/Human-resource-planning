@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import * as employeeRepo from '@/features/employee/employeeApi';
-import * as documentRepo from '@/features/documents/employeeDocument.repositories';
+import * as employeeRepo from '@/modules/employee/services/employeeApi';
+import * as documentRepo from '@/modules/documents/services/document.service';
 
 const useDocumentStore = create((set, get) => ({
     employees: [],

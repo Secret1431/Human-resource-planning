@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import * as branchApi from '../features/branch/branchApi';
+import * as branchApi from '@/modules/branch/store/branch.store';
 
 const useBranchStore = create((set, get) => ({
     branches: [],

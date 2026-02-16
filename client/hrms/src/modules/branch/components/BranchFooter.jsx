@@ -1,4 +1,4 @@
-import Footer from "@/components/tables/footer";
+import Footer from "@/shared/components/tables/footer";
 import useBranch from "../hooks/useBranch";
 
 function BranchFooter() {

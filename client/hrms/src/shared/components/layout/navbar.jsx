@@ -1,7 +1,6 @@
-import useGlobalStore from "../../lib/theme/index";
+
 
 function Navbar() {
-  const { theme, toggleTheme } = useGlobalStore();
 
   return (
     <div className="w-full h-14 bg-white shadow-sm border border-gray-200">

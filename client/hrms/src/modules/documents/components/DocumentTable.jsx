@@ -4,8 +4,7 @@ import { PERMISSION } from "@/lib/permission.config";
 
 function DocumentTable({ onEdit, onDelete, currentUserRole }) {
 
-    const { state } = useDocument();
-    const { documents } = state();
+    const { documents } = useDocument()
 
     const columns = [
         { key: '', header: '' },

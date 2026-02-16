@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import * as authApi from '@/features/auth/authApi';
+import * as authApi from '@/modules/auth/services/auth.service';
 
 const useAuthStore = create((set) => ({
     users: [],

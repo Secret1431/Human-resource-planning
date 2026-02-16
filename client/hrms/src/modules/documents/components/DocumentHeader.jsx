@@ -3,15 +3,14 @@ import useDocument from "../hooks/useDocument";
 
 function DocumentHeader() {
 
-    const { state } = useDocument();
-    const { search, setSearch } = state();
+    const { search, setSearch } = useDocument();
 
     return (
         <Header 
             title='Document'
             search={search}
             setSearch={setSearch}
-            button='myModal'
+            button='#myModal'
             label='+ Add Document'
         />
     )

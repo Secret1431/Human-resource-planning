@@ -1,4 +1,4 @@
-import useResponsive from "@/hooks/useReponsive";
+import useResponsive from "@/shared/hooks/useReponsive";
 import useAuthStore from "@/modules/auth/store/auth.store";
 import Sidebar from "./sidebar";
 import Navbar from "./navbar";

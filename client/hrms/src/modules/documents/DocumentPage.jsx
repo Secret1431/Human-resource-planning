@@ -5,7 +5,7 @@ import useDebounce from "@/shared/hooks/useDebounce";
 
 import DocumentForm from "./components/DocumentForm";
 import DocumentTable from "./components/DocumentTable";
-import DocumentHeader from "./components/DocumentHeadder";
+import DocumentHeader from "./components/DocumentHeader";
 import DocumentFooter from "./components/DocumentFooter";
 
 import Skeleton from "@/shared/components/ui/skeleton";
@@ -14,16 +14,14 @@ import ModuleLayout from "@/shared/components/layout/moduleLayout";
 
 function DocumentPage() {
 
-    const { state } = useDocument();
-    const { loading } = state();
-
+    const { loading } = useDocument()
     const debounceLoading = useDebounce(loading, 5000);
 
     return (
         <AppLayout>
             <ModuleLayout
-                form={DocumentForm}
-                header={DocumentHeader}
+                form={<DocumentForm />}
+                header={<DocumentHeader />}
                 table={debounceLoading ? <Skeleton /> : <DocumentTable />}
                 footer={<DocumentFooter />}
             ></ModuleLayout>

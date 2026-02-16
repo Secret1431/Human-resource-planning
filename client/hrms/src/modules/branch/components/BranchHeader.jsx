@@ -1,4 +1,4 @@
-import Header from '../../../components/ui/tables/header';
+import Header from '@/shared/components/tables/header';
 import useBranch from '../hooks/useBranch';
 
 function BranchHeader() {

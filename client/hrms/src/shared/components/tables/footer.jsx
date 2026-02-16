@@ -9,7 +9,7 @@ const Footer = ({page, limit, setPage, setLimit, totalPage}) => {
     };
     
     return (
-        <div className="flex flex-col sm:flex-row justify-between items-center mt-48 p-2 bg-white shadow-sm rounded-lg text-gray-700 font-medium">
+        <div className="flex flex-col sm:flex-row justify-between items-center mt-48 p-2 bg-white shadow-md rounded-lg text-gray-700 font-medium">
             <div className="flex items-center gap-2 mb-1 sm:mb-0">
                 <span >Row per page</span>
                 <select

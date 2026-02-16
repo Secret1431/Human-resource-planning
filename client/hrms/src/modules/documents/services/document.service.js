@@ -1,4 +1,4 @@
-import { supabase } from "../api/supabaseClient";
+import { supabase } from "@/lib/supabase/supabaseClient";
 
 export async function fetchAllDocuments (page = 1, limit = 10, search = '') {
     const from = (page - 1) * limit;

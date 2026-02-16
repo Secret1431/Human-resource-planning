@@ -7,7 +7,7 @@ function useDocument() {
         documents, loading, page, limit,
         search, totalPage, setPage, setLimit,
         setSearch, fetchDocuments 
-    } = useDocument();
+    } = useDocumentStore();
 
     useEffect(() => {
         fetchDocuments();

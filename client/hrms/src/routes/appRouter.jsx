@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import BranchPage from "@/modules/branch/BranchPage";
+import DocumentPage from "@/modules/documents/DocumentPage";
 
 function AppRoute() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<BranchPage />} />
+                <Route path="/" element={<DocumentPage />} />
             </Routes>
         </BrowserRouter>
     )
