@@ -1,10 +1,12 @@
 import Table from "@/shared/components/tables/table";
-import useEmployee from "../hooks/useEmployee";
 import { PERMISSION } from "@/lib/permission.config";
+import usePosition from "../hooks/usePosition";
 
-function EmployeeTable({ onEdit, onDelete, userRole }) {
+function PositionTable({ onEdit, onDelete, userRole }) {
 
-    const colums = [
+    const { positions } = usePosition();
+
+    const positionColumns = [
         { key: '', header: '' },
         {
             key: 'actions',
@@ -20,14 +22,16 @@ function EmployeeTable({ onEdit, onDelete, userRole }) {
 
                     {PERMISSION.EMPLOYEE.DELETE.includes(userRole) && (
                         <button
-                            onClick={() => onDelete(row.employeeId)}
+                            onClick={() => onDelete(row.branchId)}
                             className="bg-red-600 py-2 px-4 shadow-md rounded-lg border"
                         > Delete </button>
                     )}
                 </>
             }
         }
-    ]
+    ];
+
+    return ( <Table data={positions} columns={positionColumns} />)
 }
 
-export default EmployeeTable
+export default PositionTable;

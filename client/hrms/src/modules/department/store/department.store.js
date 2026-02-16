@@ -40,7 +40,7 @@ const useDepartmentStore = create((set, get) => ({
 
             return depRes
         } catch (err) {
-            set({ errpr: err.message });
+            set({ error: err.message });
             throw err;
         } finally {
             set({ loading: false });

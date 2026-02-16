@@ -1,38 +1,22 @@
 import { useEffect } from "react";
-import useDepartStore from '../store/departmentStore';
+import useDepartmentStore from "../store/department.store";
 
 function useDepartment() {
-    const { 
-        loading,
-        page,
-        limit,
-        search,
-        setPage,
-        setLimit,
-        setSearch,
-        totalPage,
-        fetchAllDepartments,
-        addDepartments,
-        editDepartments,
-        deleteDepartments
-    } = useDepartStore();
+
+    const {
+        departments, loading, page, limit,
+        search, totalPage, setPage, setLimit,
+        setSearch, fetchDepartments
+    } = useDepartmentStore()
 
     useEffect(() => {
-        fetchAllDepartments();
-    }, [page, limit, search]);
-
+        fetchDepartments();
+    }, [page, limit, search, fetchDepartments]);
+    
     return {
-        loading,
-        page,
-        limit,
-        search,
-        setPage,
-        setLimit,
-        setSearch,
-        totalPage,
-        addDepartments,
-        editDepartments,
-        deleteDepartments
+        departments, loading, page, limit,
+        search, totalPage, setPage, setLimit,
+        setSearch
     };
 }
 

@@ -1,18 +1,18 @@
-import { Header, useFetch } from '@/shared/index';
+import Header from "@/shared/components/tables/header";
+import useEmployee from "../hooks/useEmployee";
 
 function EmployeeHeader() {
 
-    const { search, setSearch } = useFetch();
+    const { search, setSearch } = useEmployee();
 
     return (
         <Header 
-            title='Employee Table'
             search={search}
             setSearch={setSearch}
             button='#myModal'
-            label='Add Employee'
+            label='+ Add Employee'
         />
     )
 }
 
-export default EmployeeHeader
+export default EmployeeHeader;

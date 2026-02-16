@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import 
 
 function useForm({
     initialState,
@@ -39,8 +40,8 @@ function useForm({
         
         try {
             const res = editData 
-                ? updateAction(editData, editData[idKey])
-                : createAction(data)
+                ? await updateAction(editData, editData[idKey])
+                : await createAction(data)
             const message = editData ? 'Update' : 'Create'
             toast.success(res.message || message);
         } catch (err) {

@@ -1,12 +1,12 @@
 import Footer from "@/shared/components/tables/footer";
-import useEmployee from "../hooks/useEmployee";
+import usePosition from "../hooks/usePosition";
 
-function EmployeeFooter() {
+function PositionFooter() {
 
-    const { 
+    const {
         page, limit, totalPage, setPage,
         setLimit
-    } = useEmployee();
+    } = usePosition();
 
     return (
         <Footer 
@@ -19,4 +19,4 @@ function EmployeeFooter() {
     )
 }
 
-export default EmployeeFooter;
+export default PositionFooter;

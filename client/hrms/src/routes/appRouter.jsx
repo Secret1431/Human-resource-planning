@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import BranchPage from "@/modules/branch/brand-page";
+import BranchPage from "@/modules/branch/BranchPage";
 
 function AppRoute() {
     return (

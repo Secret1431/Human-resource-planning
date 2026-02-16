@@ -1,11 +1,13 @@
-import { useForm } from '@/shared/index';
+import useForm from '@/shared/hooks/useForm';
 import useEmployeeStore from '@/modules/employee/store/employeeStore';
+import { EmployeeDefault } from '@/entities/employee.entities';
 
-function usePositionForm() {
+function useEmployeeForm() {
 
     const { addEmployee, updateEmployee, deleteEmployee } = useEmployeeStore();
     
     return useForm({
+        initialState: EmployeeDefault,
         createAction: addEmployee,
         updateAction: updateEmployee,
         deleteAction: deleteEmployee,
@@ -14,4 +16,4 @@ function usePositionForm() {
     
 }
 
-export default usePositionForm;
+export default useEmployeeForm;

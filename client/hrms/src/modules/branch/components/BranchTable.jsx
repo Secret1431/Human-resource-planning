@@ -1,10 +1,12 @@
-import Table from "@/shared/components/tables/table";
-import useEmployee from "../hooks/useEmployee";
+import Table from "@/components/tables/table";
+import useDocument from "@/modules/documents/hooks/useDocument";
 import { PERMISSION } from "@/lib/permission.config";
 
-function EmployeeTable({ onEdit, onDelete, userRole }) {
+function BranchTable({ onEdit, onDelete, userRole }) {
 
-    const colums = [
+    const { documents } = useDocument();
+
+    const branchColumns = [
         { key: '', header: '' },
         {
             key: 'actions',
@@ -15,19 +17,21 @@ function EmployeeTable({ onEdit, onDelete, userRole }) {
                         <button
                             onClick={() => onEdit(row)}
                             className="bg-green-600 py-2 px-4 shadow-md rounded-lg border"
-                        > Edit </button>
+                        > Edit </button> 
                     )}
 
                     {PERMISSION.EMPLOYEE.DELETE.includes(userRole) && (
                         <button
-                            onClick={() => onDelete(row.employeeId)}
+                            onClick={() => onDelete(row.branchId)}
                             className="bg-red-600 py-2 px-4 shadow-md rounded-lg border"
                         > Delete </button>
                     )}
                 </>
             }
         }
-    ]
+    ];
+
+    return ( <Table data={documents} columns={branchColumns} />)
 }
 
-export default EmployeeTable
+export default BranchTable

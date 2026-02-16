@@ -1,18 +1,18 @@
 import Form from "@/shared/components/ui/form";
-import useEmployeeForm from "../hooks/useEmployeeForm";
-import { EmployeeFields } from "@/entities/employee.entities";
+import usePositionForm from "../hooks/usePositionForm";
+import { PositionFields } from "@/entities/position.entities";
 
-function EmployeeForm() {
+function PositionForm() {
 
     const {
         formData, editData, handleChange, handleSubmit,
         isOpen, closeModal
-    } = useEmployeeForm();
+    } = usePositionForm();
 
     return (
         <Form 
-            title={editData ? 'Update Employee' : 'Add Employee'}
-            fields={EmployeeFields}
+            title={editData ? 'Update Position' : 'Add Position'}
+            fields={PositionFields}
             formData={formData}
             editData={editData}
             onChange={handleChange}
@@ -23,4 +23,4 @@ function EmployeeForm() {
     )
 }
 
-export default EmployeeForm;
+export default PositionForm

@@ -1,12 +1,12 @@
 import { useForm } from "@/shared/index";
-import useBranchStore from "@/modules/branch/store/branchStore";
-import { Department } from "@/entities/department.entities";
+import useBranchStore from "@/modules/branch/store/branch.store";
+import { DepartmentDefault } from "@/entities/department.entities";
 
 function useDepartmentForm() {
     const { addBranch, updateBranch, deleteBranch } = useBranchStore();
 
     return useForm({
-        initialState: Department,
+        initialState: DepartmentDefault,
         createAction: addBranch,
         updateAction: updateBranch,
         deleteAction: deleteBranch,

@@ -2,7 +2,9 @@ import Footer from "@/components/tables/footer";
 import useDepartment from "../hooks/useDepartment";
 
 function DepartmentFooter() {
-    const { page, limit, setLimit, setPage, totalPage } = useDepartment();
+    
+    const { state } = useDepartment();
+    const { page, limit, totalPage, setPage, setLimit } = state();
 
     return (
         <Footer 

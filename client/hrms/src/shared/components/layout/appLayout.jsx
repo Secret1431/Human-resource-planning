@@ -1,5 +1,5 @@
 import useResponsive from "@/hooks/useReponsive";
-import useAuthStore from "@/modules/auth/store/authStore";
+import useAuthStore from "@/modules/auth/store/auth.store";
 import Sidebar from "./sidebar";
 import Navbar from "./navbar";
 

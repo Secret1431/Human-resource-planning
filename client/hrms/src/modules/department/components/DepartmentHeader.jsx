@@ -1,9 +1,10 @@
 import { Header } from "@/shared/index";
-import { useFetch } from '@/shared/index';
+import useDepartment from "../hooks/useDepartment";
 
 function DepartmentHeader() {
 
-    const { search, setSearch } = useFetch();
+    const { state } = useDepartment();
+    const { search, setSearch } = state();
 
     return (
         <Header 

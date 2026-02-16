@@ -1,18 +1,15 @@
 import Form from "@/components/ui/form";
 import useBranchForm from "../hooks/useBranchForm";
+import { BranchFields } from "@/entities/branch.entities";
 
 function BranchForm() {
 
     const { formData, editData, isOpen, closeModal, handleChange, handleSubmit } = useBranchForm();
-    
-    const fields = [
-        { type: '', name: '', label: '' }
-    ];
 
     return (
         <Form 
             title={editData ? 'Edit Branch' : 'Add Branch'}
-            fields={fields}
+            fields={BranchFields}
             formData={formData}
             editData={editData}
             onChange={handleChange}

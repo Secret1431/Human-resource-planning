@@ -1,7 +1,11 @@
 import Table from "@/components/tables/table";
+import useDepartment from "../hooks/useDepartment";
 
-function DepartmentTable({ departments, onEdit, onDelete }) {
+function DepartmentTable({ onEdit, onDelete }) {
 
+    const { state } = useDepartment();
+    const { departments } = state();
+    
     const columns = [
         { key: '', header: '' },
         {

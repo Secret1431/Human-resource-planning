@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-function useFetch(store, fetchKey) {
+function useFetch(store, fetchKey, deps = []) {
 
     const state = store();
 
@@ -8,7 +8,7 @@ function useFetch(store, fetchKey) {
     
     useEffect(() => {
         state[fetchKey]();
-    }, [page, limit, search, fetchKey, state]);
+    }, [fetchKey, state, ...deps]);
 
     return { search, selected, setSearch, setSelected };
 }

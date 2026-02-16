@@ -1,12 +1,10 @@
 import Footer from "@/shared/components/tables/footer";
-import useEmployee from "../hooks/useEmployee";
+import useDocument from "../hooks/useDocument";
 
-function EmployeeFooter() {
+function DocumentFooter() {
 
-    const { 
-        page, limit, totalPage, setPage,
-        setLimit
-    } = useEmployee();
+    const { state } = useDocument();
+    const { page, limit, totalPage, setPage, setLimit } = state();
 
     return (
         <Footer 
@@ -19,4 +17,4 @@ function EmployeeFooter() {
     )
 }
 
-export default EmployeeFooter;
+export default DocumentFooter;
