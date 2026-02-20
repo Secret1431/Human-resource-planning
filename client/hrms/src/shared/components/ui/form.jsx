@@ -1,14 +1,12 @@
 import React from "react";
 import Modal from "./modal";
 
-function Form({title, fields, formData, editData, onSubmit, onChange, isOpen, closeModal }) {
+function Form({title, fields, formData, editData, onSubmit, onChange }) {
 
     const data = editData || formData;
-
-    if(!isOpen) return null;
     
     return (
-        <Modal title={title} submitText={title} onSubmit={onSubmit} closeModal={closeModal}>
+        <Modal title={title} submitText={title} onSubmit={onSubmit} >
             <form>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {fields.map((f, index) => (

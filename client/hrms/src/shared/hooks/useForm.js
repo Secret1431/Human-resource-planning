@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Modal } from "bootstrap";
 import { toast } from "react-toastify";
 
 function useForm({
@@ -6,13 +7,11 @@ function useForm({
     createAction,
     updateAction,
     deleteAction,
-    idKey
+    idKey,
 }) {
     const [formData, setFormData] = useState(initialState);
     const [editData, setEditData] = useState(null);
-    const [isOpen, setIsOpen] = useState(false);
 
-    // Handle input change
     const handleChange = (e) => {
         const { name, type, checked, value } = e.target;
         const newValue = type === "checkbox" ? checked : value;
@@ -24,32 +23,20 @@ function useForm({
         }
     };
 
-    // Open modal for edit
     const handleClick = (item) => {
-        if (!item) return;
-
-        setEditData({ ...item }); // clone para safe
-        setIsOpen(true);
+        setEditData(item);
+        openModal();
     };
 
-    // Open modal for create
-    const handleOpen = () => {
-        setEditData(null);
-        setFormData(initialState);
-        setIsOpen(true);
-    };
+    const openModal = () => {
+        const modalElement = document.getElementById('myModal');
+        const modal = Modal.getOrCreateInstance(modalElement);
+        modal.show();
+    }
 
-    // Close modal & reset
-    const closeModal = () => {
-        setIsOpen(false);
-        setEditData(null);
-        setFormData(initialState);
-    };
-
-    // Submit handler (create or update)
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        
         try {
             const res = editData
                 ? await updateAction(editData[idKey], editData)
@@ -59,14 +46,11 @@ function useForm({
                 res?.message ||
                 (editData ? "Updated successfully" : "Created successfully")
             );
-
-            closeModal();
         } catch (err) {
             toast.error(err?.message || "Something went wrong");
         }
     };
 
-    // Delete handler
     const handleDelete = async (id) => {
         if (!id) return;
 
@@ -82,15 +66,12 @@ function useForm({
     };
 
     return {
-        isOpen,
         formData,
         editData,
         handleChange,
         handleClick,
-        handleOpen,
         handleSubmit,
         handleDelete,
-        closeModal
     };
 }
 

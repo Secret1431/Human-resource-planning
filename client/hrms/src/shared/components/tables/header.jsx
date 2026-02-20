@@ -1,6 +1,6 @@
 import React from "react";
 
-function Header({ title, search, setSearch, button, label}) {
+function Header({ title, search, setSearch, label, modalTarget}) {
     return (
 
         <div className="relative w-full p-2 -top-10 bg-linear-to-r from-cyan-400 to-indigo-600 shadow-lg rounded-md border border-gray-300">
@@ -10,7 +10,7 @@ function Header({ title, search, setSearch, button, label}) {
                     <button
                         type="button"
                         data-bs-toggle="modal"
-                        data-bs-target={button}
+                        data-bs-target={modalTarget}
                         className="bg-white text-blue-500 py-2 px-3 shadow-md rounded"
                     >
                         {label}

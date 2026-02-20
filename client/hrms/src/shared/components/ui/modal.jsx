@@ -1,6 +1,6 @@
 import React from "react";
 
-function Modal({ title, children, onSubmit, submitText, closeModal }) {
+function Modal({ title, children, onSubmit, submitText }) {
     return (
         <div className="modal fade" id="myModal" tabIndex='-1' aria-hidden='true'>
             <div className="modal-dialog modal-lg">
@@ -11,7 +11,7 @@ function Modal({ title, children, onSubmit, submitText, closeModal }) {
                     </div>
                     <div className="modal-body">{children}</div>
                     <div className="modal-footer">
-                        <button onClick={closeModal} className="btn btn-secondary" data-bs-dismiss='modal'>
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss='modal'>
                             Close
                         </button>
                         <button type="submit" className="btn btn-primary" onClick={onSubmit}>

@@ -1,8 +1,10 @@
-import { create } from "zustand";
-import * as positionRepo from '@/features/position/positionApi';
+import { create } from 'zustand';
+import * as leaveService from '@/modules/leave/services/leave.service';
+import * as employeeService from '@/modules/employee/services/employeeApi';
 
-const usePositionStore = create((set, get) => ({
-    positions: [],
+const useLeaveStore = create((get, set) => ({
+    leaves: [],
+    employees: [],
     loading: false,
     error: null,
     page: 1,
@@ -16,20 +18,25 @@ const usePositionStore = create((set, get) => ({
     setSearch: (search) => set({ search, page: 1 }),
     setTotalPage: (totalPage) => set({ totalPage }),
 
-    fetchPositions: async () => {
+    fetchLeave: async () => {
+
         set({ loading: true, error: null });
 
-        try {
-            const {page, limit, search} = get();
-            const res = await positionRepo.fetAllPositions(page, limit, search);
+        try {   
+            const { page, limit, search } = get();
+            const [leaveRes, empRes] = await Promise.all([
+                leaveService.getLeaves(page, limit, search),
+                employeeService.fetchEmployees()
+            ]);
 
             set({
-                positions: res.data,
-                pagination: res.pagination
+                leaves: leaveRes.data,
+                employees: empRes.data,
+                pagination: leaveRes.pagination
             });
 
-            return res;
-            
+            return leaveRes;
+
         } catch (err) {
             set({ error: err.message });
             throw err;
@@ -38,14 +45,15 @@ const usePositionStore = create((set, get) => ({
         }
     },
 
-    addPosition: async (positionData) => {
+    addLeaves: async (leaveData) => {
+        
         set({ loading: true, error: null });
 
         try {
-            const res = await positionRepo.createPositions(positionData);
+            const res = await leaveService.createLeaves(leaveData);
 
             set((state) => ({
-                positions: [...state.positions, ...res]
+                leaves: [...state.leaves, res.data]
             }));
 
             return res;
@@ -58,17 +66,16 @@ const usePositionStore = create((set, get) => ({
         }
     },
 
-    editPosition: async (positionId, updatePosition) => {
+    updateLeaves: async (leaveId, updateLeave) => {
+
         set({ loading: true, error: null });
 
         try {
-            const res = await positionRepo.updatePositions(positionId, updatePosition);
+            const res = await leaveService.updateLeaves(leaveId, updateLeave);
 
             set((state) => ({
-                positions: state.positions.map(
-                    p => p.positionId === positionId ? res[0] : p
-                )
-            }))
+                leaves: state.leaves.map(l => l.leaveId === leaveId ? res[0] : l)
+            }));
 
             return res;
 
@@ -80,16 +87,18 @@ const usePositionStore = create((set, get) => ({
         }
     },
 
-    deletePosition: async (positionId) => {
+    deleteLeave: async (leaveId) => {
+
         set({ loading: true, error: null });
 
         try {
-            await positionRepo.removePositions(positionId);
+            await leaveService.removeLeaves(leaveId);
 
             set((state) => ({
-                positions: state.positions.filter(p => p.positionId !== positionId)
+                leaves: state.leaves.filter(l => l.leaveId !== leaveId )
             }));
 
+            return leaveId;
         } catch (err) {
             set({ error: err.message });
             throw err;
@@ -99,4 +108,4 @@ const usePositionStore = create((set, get) => ({
     }
 }))
 
-export default usePositionStore;
+export default useLeaveStore;

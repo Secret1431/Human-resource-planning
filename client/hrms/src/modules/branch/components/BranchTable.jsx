@@ -1,10 +1,10 @@
-import Table from "@/components/tables/table";
-import useDocument from "@/modules/documents/hooks/useDocument";
+import Table from "@/shared/components/tables/table";
+import useBranch from "../hooks/useBranch";
 import { PERMISSION } from "@/lib/permission.config";
 
 function BranchTable({ onEdit, onDelete, userRole }) {
 
-    const { documents } = useDocument();
+    const { branches } = useBranch();
 
     const branchColumns = [
         { key: '', header: '' },
@@ -31,7 +31,7 @@ function BranchTable({ onEdit, onDelete, userRole }) {
         }
     ];
 
-    return ( <Table data={documents} columns={branchColumns} />)
+    return ( <Table data={branches} columns={branchColumns} />)
 }
 
 export default BranchTable

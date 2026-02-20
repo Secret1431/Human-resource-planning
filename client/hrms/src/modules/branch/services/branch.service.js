@@ -1,6 +1,6 @@
 import { supabase } from "../../../lib/supabase/supabaseClient";
 
-export async function fetchAllBranch(page = 1, limit = 10, search = '', selectBranch = '') {
+export async function getBranch(page = 1, limit = 10, search = '') {
     const from = (page - 1) * limit;
 
     let query = supabase
@@ -9,10 +9,8 @@ export async function fetchAllBranch(page = 1, limit = 10, search = '', selectBr
     .range(from, from + limit - 1)
 
     if(search) {
-        query = query.ilike('name', `%${search}%`)
+        query = query.ilike('branchName', `%${search}%`)
     }
-
-    if(selectBranch.name) query = query.eq('name', selectBranch.name);
 
     const { data, count, error } = await query
 
@@ -28,11 +26,10 @@ export async function fetchAllBranch(page = 1, limit = 10, search = '', selectBr
 };
 
 export async function createBranch(branchData) {
-    const { data: { user } } = await supabase.auth.getUser();
 
     const {data, error} = await supabase
     .from('branches')
-    .insert({ ...branchData, user_id: user.id })
+    .insert([{ ...branchData}])
     .select()
     .range()
 

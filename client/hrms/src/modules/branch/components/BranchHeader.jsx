@@ -7,9 +7,9 @@ function BranchHeader() {
 
     return (
         <Header 
-            title='Branch'
-            button='#myModal'
+            title='Branch Form'
             label='Add branch'
+            modalTarget='#myModal'
             search={search}
             setSearch={setSearch}
         />

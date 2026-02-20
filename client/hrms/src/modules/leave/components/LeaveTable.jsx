@@ -1,16 +1,16 @@
 import Table from "@/shared/components/tables/table";
+import useLeave from "../hooks/useLeave";
 import { PERMISSION } from "@/lib/permission.config";
-import usePosition from "../hooks/usePosition";
 
-function PositionTable({ onEdit, onDelete, userRole }) {
+function LeaveTable({ onEdit, onDelete, userRole }) {
 
-    const { positions } = usePosition();
+    const { leaves } = useLeave();
 
-    const positionColumns = [
+    const leaveColumns = [
         { key: '', header: '' },
         {
             key: 'actions',
-            header: 'Actions',
+            header: 'Action',
             render: (row) => {
                 <>
                     {PERMISSION.EMPLOYEE.EDIT.includes(userRole) && (
@@ -22,7 +22,7 @@ function PositionTable({ onEdit, onDelete, userRole }) {
 
                     {PERMISSION.EMPLOYEE.DELETE.includes(userRole) && (
                         <button
-                            onClick={() => onDelete(row.branchId)}
+                            onClick={() => onDelete(row.leaveId)}
                             className="bg-red-600 py-2 px-4 shadow-md rounded-lg border"
                         > Delete </button>
                     )}
@@ -31,7 +31,7 @@ function PositionTable({ onEdit, onDelete, userRole }) {
         }
     ];
 
-    return ( <Table data={positions} columns={positionColumns} />)
+    return ( <Table data={leaves} columns={leaveColumns} />)
 }
 
-export default PositionTable;
+export default LeaveTable;

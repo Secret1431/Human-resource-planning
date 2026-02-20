@@ -1,19 +1,19 @@
 import Footer from "@/shared/components/tables/footer";
-import useDocument from "../hooks/useDocument";
+import useLeave from "../hooks/useLeave";
 
-function DocumentFooter() {
+function LeaveFooter() {
 
-    const { page, limit, totalPage, setPage, setLimit } = useDocument();
+    const { page, limit, setPage, setLimit, totalPage } = useLeave();
 
     return (
         <Footer 
             page={page}
             limit={limit}
-            setLimit={setLimit}
             setPage={setPage}
+            setLimit={setLimit}
             totalPage={totalPage}
         />
     )
 }
 
-export default DocumentFooter;
+export default LeaveFooter;

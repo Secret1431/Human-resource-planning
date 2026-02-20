@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import * as branchApi from '@/modules/branch/store/branch.store';
+import * as branchService from '@/modules/branch/services/branch.service';
 
 const useBranchStore = create((set, get) => ({
     branches: [],
@@ -8,22 +8,22 @@ const useBranchStore = create((set, get) => ({
     page: 1,
     limit: 10,
     search: '',
-    selected: '',
     pagination: { total: 1, totalPage: 1 },
 
     setLoading: (loading) => set({ loading }),
     setPage: (page) => set({ page }),
     setLimit: (limit) => set({ limit, page: 1 }),
     setSearch: (search) => set({ search, page: 1 }),
-    setSelected: (selected) => set({ selected, page: 1 }),
     setTotalPage: (totalPage) => set({ totalPage }),
 
     fetchBranch: async () => {
+        
         set({ loading: true, error: null });
-        try {
-            const {page, limit, search, selected} = get();
-            const res = await branchApi.fetchAllBranch(page, limit, search, selected);
 
+        try {
+            const {page, limit, search} = get();
+            const res = await branchService.getBranch(page, limit, search);
+            
             set({
                 branches: res.data,
                 pagination: res.pagination
@@ -41,7 +41,7 @@ const useBranchStore = create((set, get) => ({
     addBranch: async (branchData) => {
         set({ loading: true, error: null });
         try {
-            const res = await branchApi.createBranch(branchData);
+            const res = await branchService.createBranch(branchData);
 
             set((state) => ({
                 branches: [ ...state.branches, ...res]
