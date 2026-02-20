@@ -1,4 +1,4 @@
-import { useForm } from "@/shared/index";
+import useForm from "@/shared/hooks/useForm";
 import useBranchStore from "@/modules/branch/store/branch.store";
 import { DepartmentDefault } from "@/entities/department.entities";
 

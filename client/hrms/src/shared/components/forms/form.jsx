@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "./modal";
+import Modal from "../ui/modal";
 
 function Form({title, fields, formData, editData, onSubmit, onChange }) {
 

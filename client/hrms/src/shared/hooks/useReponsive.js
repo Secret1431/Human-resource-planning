@@ -8,7 +8,7 @@ function useResponsive() {
     useEffect(() => {
         const handleResize = () => setWidth(window.innerWidth);
         window.addEventListener('resize', handleResize);
-        return () => removeEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     return {

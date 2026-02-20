@@ -11,7 +11,7 @@ export const EmployeeDefault = {
     employmentStatus: ''
 };
 
-export const EmployeeFields = (branches = [], departments = []) => [
+export const EmployeeFields = (branches, departments) => [
     {
         type: 'select',
         name: 'branchId',

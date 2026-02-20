@@ -1,8 +1,7 @@
 import { create } from "zustand";
-import * as employeeRepo from '@/features/employee/employeeApi';
-import * as departmentRepo from '@/features/department/departmentApi';
-import * as positionRepo from '@/features/position/positionApi';
-import * as branchRepo from '@/features/branch/branchApi';
+import * as employeeRepo from '@/modules/employee/services/employeeApi';
+import * as departmentRepo from '@/modules/department/services/department.service';
+import * as branchRepo from '@/modules/branch/services/branch.service';
 
 const useEmployeeStore = create((set, get) => ({
     employees: [],
@@ -27,17 +26,15 @@ const useEmployeeStore = create((set, get) => ({
         set({ loading: true, error: null });
         try {
             const {page, limit, search, selected} = get()
-            const [empRes, depRes, posRes, branchRes] = await Promise.all([
+            const [empRes, depRes, branchRes] = await Promise.all([
                 employeeRepo.fetchEmployees(page, limit, search, selected),
                 departmentRepo.fetchAllDepartments(),
-                positionRepo.fetchAllDepartments(),
-                branchRepo.fetchAllBranch()
+                branchRepo.getBranch()
             ]);
 
             set({
                 employees: empRes.data,
                 departments: depRes.data,
-                positions: posRes,
                 branches: branchRes,
                 pagination: empRes.pagination
             });

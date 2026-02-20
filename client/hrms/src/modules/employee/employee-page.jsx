@@ -20,8 +20,8 @@ function EmployeePage() {
     return (
         <AppLayout>
             <ModuleLayout
-                form={EmployeeForm}
-                header={EmployeeHeader}
+                form={<EmployeeForm />}
+                header={<EmployeeHeader />}
                 table={debounceLoading ? <Skeleton /> : <EmployeeTable />}
                 footer={<EmployeeFooter />}
             ></ModuleLayout>

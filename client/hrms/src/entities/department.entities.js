@@ -4,7 +4,7 @@ export const DepartmentDefault = {
     departmentName: ''
 };
 
-export const DepartmentFields = (branches = []) => [
+export const DepartmentFields = (branches) => [
     {
         type: 'select',
         name: 'branchId',

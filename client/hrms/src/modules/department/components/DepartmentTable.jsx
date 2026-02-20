@@ -1,10 +1,9 @@
-import Table from "@/components/tables/table";
+import Table from "@/shared/components/tables/table";
 import useDepartment from "../hooks/useDepartment";
 
 function DepartmentTable({ onEdit, onDelete }) {
 
-    const { state } = useDepartment();
-    const { departments } = state();
+    const { departments } = useDepartment();
     
     const columns = [
         { key: '', header: '' },

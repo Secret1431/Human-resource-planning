@@ -6,12 +6,12 @@ function useEmployee() {
     const {
         employees, loading, page, limit,
         search, totalPage, setPage, setLimit,
-        setSearch, fetchEmployee
+        setSearch, fetchEmployees
     } = useEmployeeStore();
 
     useEffect(() => {
-        fetchEmployee()
-    }, [page, limit, search, fetchEmployee])
+        fetchEmployees()
+    }, [page, limit, search, fetchEmployees])
     
     return {
         employees, loading, page, limit,

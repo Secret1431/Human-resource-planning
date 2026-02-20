@@ -4,7 +4,9 @@ import { PERMISSION } from "@/lib/permission.config";
 
 function EmployeeTable({ onEdit, onDelete, userRole }) {
 
-    const colums = [
+    const { employees } = useEmployee();
+
+    const employeeColumns = [
         { key: '', header: '' },
         {
             key: 'actions',
@@ -27,7 +29,9 @@ function EmployeeTable({ onEdit, onDelete, userRole }) {
                 </>
             }
         }
-    ]
+    ];
+
+    return ( <Table data={employees} columns={employeeColumns} />)
 }
 
 export default EmployeeTable

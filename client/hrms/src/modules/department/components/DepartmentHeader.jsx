@@ -1,16 +1,15 @@
-import { Header } from "@/shared/index";
+import Header from "@/shared/components/tables/header";
 import useDepartment from "../hooks/useDepartment";
 
 function DepartmentHeader() {
 
-    const { state } = useDepartment();
-    const { search, setSearch } = state();
+    const { search, setSearch } = useDepartment();
 
     return (
         <Header 
             search={search}
             setSearch={setSearch}
-            button='#myModal'
+            modalTarget='#myModal'
             label='Add Department'
         />
     )

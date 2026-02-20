@@ -6,47 +6,46 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 
 function useAuthForm() {
-
-    const navigate = useNavigate()
-    const [formData, setFormData] = useState(AuthDefault)
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState(AuthDefault);
     const [isLogin, setIsLogin] = useState(true);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-
-        setFormData(prev => ({ ...prev, [name] : value }));
+        setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleLogin = async () => {
+    const handleLogin = async (e) => {
+        e.preventDefault(); // ✅ Prevent form reload
 
         try {
             let res;
 
-            if(isLogin) {
-                res = await loginUser(formData)
+            if (isLogin) {
+                res = await loginUser(formData);
             } else {
-                res = await registerUsers(formData)
-                toast.success(res.message || '')
+                res = await registerUsers(formData);
+                toast.success(res.message || "");
                 setIsLogin(true);
-                return
-            };
+                return;
+            }
 
             const user = res.user;
-            if(!user) throw new Error('No users authenticated');
+            if (!user) throw new Error("No users authenticated");
+
             const role = ROLES.EMPLOYEE;
 
-            if(['Hr', 'Manager', 'Admin'].includes(role)) {
-                navigate('/attendance')
+            if (["Hr", "Manager", "Admin"].includes(role)) {
+                navigate("/branch");
             } else {
-                navigate('/404')
-            };
-
+                navigate("/404");
+            }
         } catch (err) {
             toast.error(err.message);
         }
     };
 
-    return { handleChange, handleLogin };
+    return { formData, handleChange, handleLogin, isLogin, setIsLogin }; // ✅ include formData
 }
 
-export default useAuthForm
+export default useAuthForm;

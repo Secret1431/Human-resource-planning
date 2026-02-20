@@ -9,7 +9,7 @@ function EmployeeHeader() {
         <Header 
             search={search}
             setSearch={setSearch}
-            button='#myModal'
+            modalTarget='#myModal'
             label='+ Add Employee'
         />
     )

@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import * as departmentRepo from '@/features/department/departmentApi';
-import * as employeeRepo from '@/features/employee/employeeApi';
-import * as branchRepo from '@/features/branch/branchApi';
+import * as departmentRepo from '@/modules/department/services/department.service';
+import * as employeeRepo from '@/modules/employee/services/employeeApi';
+import * as branchRepo from '@/modules/branch/services/branch.service';
 
 const useDepartmentStore = create((set, get) => ({
     departments: [],
@@ -28,7 +28,7 @@ const useDepartmentStore = create((set, get) => ({
             const [depRes, empRes, branchRes] = await Promise.all([
                 departmentRepo.fetchAllDepartments(page, limit, search, selected),
                 employeeRepo.fetchEmployees(),
-                branchRepo.fetchAllBranch()
+                branchRepo.getBranch()
             ]);
 
             set({

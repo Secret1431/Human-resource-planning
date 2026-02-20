@@ -1,4 +1,4 @@
-import Form from "@/shared/components/ui/form";
+import Form from "@/shared/components/forms/form";
 import useBranchForm from "../hooks/useBranchForm";
 import { BranchFields } from "@/entities/branch.entities";
 

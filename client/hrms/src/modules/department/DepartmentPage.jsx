@@ -20,10 +20,10 @@ function DepartmentPage() {
     return (
         <AppLayout>
             <ModuleLayout 
-                form={DepartmentForm}
-                header={DepartmentHeader}
+                form={<DepartmentForm />}
+                header={<DepartmentHeader />}
                 table={debounceLoading ? <Skeleton /> : <DepartmentTable />}
-                footer={DepartmentFooter}
+                footer={<DepartmentFooter />}
             />
         </AppLayout>
     )
